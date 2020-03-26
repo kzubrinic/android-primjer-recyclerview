@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Pokemoni - RecyclerView </string>
+    <string name="menu_1">Jednostavna lista</string>
+    <string name="menu_2">Složena lista sa slikama</string>
+</resources>
