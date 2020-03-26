@@ -12,16 +12,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class MojAdapterListaAdapter extends RecyclerView.Adapter<MojAdapterListaAdapter.MyViewHolder>{
-    private final Pokemon[] mDataset;
+    private final List<Pokemon> mDataset;
     private Context con;
 
-    public MojAdapterListaAdapter(Pokemon[] myDataset, Context con) {
+    public MojAdapterListaAdapter(List<Pokemon> myDataset, Context con) {
         mDataset = myDataset;
         this.con = con;
     }
-    // Referenca se popunjava referencom na callback metodu
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,9 +35,9 @@ public class MojAdapterListaAdapter extends RecyclerView.Adapter<MojAdapterLista
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.label.setText(mDataset[position].getIme());
-        holder.vrsta.setText(mDataset[position].getVrsta());
-        String uri = "@drawable/" + mDataset[position].getSlika();
+        holder.label.setText(mDataset.get(position).getIme());
+        holder.vrsta.setText(mDataset.get(position).getVrsta());
+        String uri = "@drawable/" + mDataset.get(position).getSlika();
         int imageResource = con.getResources().getIdentifier(uri, null, con.getPackageName());
         Drawable res = con.getResources().getDrawable(imageResource);
         holder.slika.setImageDrawable(res);
@@ -45,7 +45,7 @@ public class MojAdapterListaAdapter extends RecyclerView.Adapter<MojAdapterLista
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
 
     }
 
@@ -70,7 +70,7 @@ public class MojAdapterListaAdapter extends RecyclerView.Adapter<MojAdapterLista
             notifyDataSetChanged();
              // Dohvat podataka iz adaptera
             if (pos != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                String pok = mDataset[pos].getIme();
+                String pok = mDataset.get(pos).getIme() + ": " + mDataset.get(pos).getVrsta();
                 // We can access the data within the views
                 Toast.makeText(con, pok, Toast.LENGTH_SHORT).show();
             }

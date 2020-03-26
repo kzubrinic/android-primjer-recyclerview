@@ -10,11 +10,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaListaAdapter.MyViewHolder>{
-    private String[] mDataset;
+    private List<String> mDataset;
     private Context con;
     // Prima se referenca na izvor podataka - u ovom slučaju polje stringova
-    public JednostavnaListaAdapter(String[] myDataset, Context c) {
+    public JednostavnaListaAdapter(List<String> myDataset, Context c) {
         mDataset = myDataset;
         con = c;
     }
@@ -22,9 +24,9 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // stvara se novi view iz xml layouta retka - moj_redak_liste_jednostavni.xml
+        // stvara se novi view iz standardnog jednostavnog layouta retka
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.moj_redak_liste_jednostavni, parent, false);
+                .inflate(android.R.layout.simple_list_item_1, parent, false);
         // Unutarnja klasa tipa ViewHolder čuva referencu na view
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -32,14 +34,14 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        // Kada se korisnik pozicionira na određeni redak odrađuje se - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.label.setText(mDataset[position]);
+        // Kada se korisnik pozicionira na određeni redak sadržaj retka viewa se ažurira
+        // podatkom iz dataseta koji se nalazi na istoj poziciji.
+        holder.label.setText(mDataset.get(position));
      }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
 
     }
 
@@ -47,7 +49,7 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
         public TextView label;
         public MyViewHolder(View itemView) {
             super(itemView);
-            label = itemView.findViewById(R.id.label);
+            label = itemView.findViewById(android.R.id.text1);
             // referenca na objekt tipa MyViewHolder se sprema kao tag elementa liste
             itemView.setTag(this);
             // registrira se listener
@@ -61,8 +63,8 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
 
             // Dohvat podataka iz adaptera
             if (pos != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
-                String pok = mDataset[pos];
-                // We can access the data within the views
+                // Dohvaća se podatak iz dataseta koji se nalazi na poziciji kliknutog retka liste
+                String pok = mDataset.get(pos);
                 Toast.makeText(con, pok, Toast.LENGTH_SHORT).show();
             }
         }

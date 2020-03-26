@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class JednostavnaListaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -20,8 +23,8 @@ public class JednostavnaListaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         final Context c = this;
         Intent intent = getIntent();
-        // parametar je polje stringova
-        final String[] values = intent.getStringArrayExtra("punjenje");
+        // parametar je lista stringova
+        List<String> values = Arrays.asList("Abra", "Absol", "Alakazam", "Arbok", "Arcanine", "Articuno", "Bagon", "Bayleef", "Beedrill", "Bellossom", "Bellsprout", "Blastoise", "Blaziken", "Breloom", "Bulbasaur", "Buneary", "Butterfree", "Cacnea", "Cacturne", "Camerupt", "Caterpie", "Celebi", "Charizard", "Charmander", "Charmeleon");
 
         setContentView(R.layout.activity_jednostavna_lista);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

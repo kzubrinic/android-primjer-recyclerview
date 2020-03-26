@@ -1,30 +1,32 @@
 package hr.unidu.kz.pokemoni_recyclerview;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MojAdapterListaActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MojAdapterListaAdapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private Pokemon[] pokemoniObj = new Pokemon[25];
+    private List<Pokemon> pokemoniObj = new ArrayList<>(25);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context c = this;
         Intent intent = getIntent();
-        // parametar je polje stringova
-        final String[] values = intent.getStringArrayExtra("punjenje");
+        // parametar je lista stringova
+        List<String> values = Arrays.asList("Abra", "Absol", "Alakazam", "Arbok", "Arcanine", "Articuno", "Bagon", "Bayleef", "Beedrill", "Bellossom", "Bellsprout", "Blastoise", "Blaziken", "Breloom", "Bulbasaur", "Buneary", "Butterfree", "Cacnea", "Cacturne", "Camerupt", "Caterpie", "Celebi", "Charizard", "Charmander", "Charmeleon");
         napuniPolje(values);
 
         setContentView(R.layout.activity_moj_adapter_lista);
@@ -53,10 +55,10 @@ public class MojAdapterListaActivity extends AppCompatActivity {
 
     }
 
-    private void napuniPolje(String[] punj){
+    private void napuniPolje(List<String> punj){
         String[] vrste = {"Psihički", "Mračni", "Psihički", "Otrovni", "Arcanine", "Vatreni", "Zmaj", "Travnati", "Buba/otrovni", "Travnati", "Travnati/otrovni", "Vodeni", "Vatreni", "Travnati", "Travnati/otrovni", "Normalni", "Leteći", "Travnati", "Travnati/mračni", "Vatreni/zemljani", "Buba", "Travnati/psihički", "Vatreni/leteći", "Vatreni", "Vatreni"};
-        for (int i = 0; i< 25; ++i){
-            pokemoniObj[i] = new Pokemon(punj[i], vrste[i]);
+        for (int i = 0; i < 25; ++i){
+            pokemoniObj.add(new Pokemon(punj.get(i), vrste[i]));
         }
     }
 }
