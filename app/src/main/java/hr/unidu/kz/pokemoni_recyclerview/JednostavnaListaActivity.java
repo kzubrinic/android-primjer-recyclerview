@@ -14,10 +14,6 @@ import java.util.List;
 
 public class JednostavnaListaActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private JednostavnaListaAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +23,7 @@ public class JednostavnaListaActivity extends AppCompatActivity {
         List<String> values = Arrays.asList("Abra", "Absol", "Alakazam", "Arbok", "Arcanine", "Articuno", "Bagon", "Bayleef", "Beedrill", "Bellossom", "Bellsprout", "Blastoise", "Blaziken", "Breloom", "Bulbasaur", "Buneary", "Butterfree", "Cacnea", "Cacturne", "Camerupt", "Caterpie", "Celebi", "Charizard", "Charmander", "Charmeleon");
 
         setContentView(R.layout.activity_jednostavna_lista);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -40,13 +34,11 @@ public class JednostavnaListaActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new JednostavnaListaAdapter(values, this);
-
-
+        JednostavnaListaAdapter mAdapter = new JednostavnaListaAdapter(values, this);
         recyclerView.setAdapter(mAdapter);
 
         setTitle(getTitle() + " - jednostavna");

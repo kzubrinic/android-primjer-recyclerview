@@ -49,6 +49,8 @@ public class MojAdapterListaAdapter extends RecyclerView.Adapter<MojAdapterLista
 
     }
 
+    // Unutarnja klasa tipa ViewHolder čuva referencu na view
+    // U njoj se obrađuje događaj pritiska/klika na stavku
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView label;
         public TextView vrsta;

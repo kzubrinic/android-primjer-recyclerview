@@ -45,6 +45,8 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
 
     }
 
+    // Unutarnja klasa tipa ViewHolder čuva referencu na view
+    // U njoj se obrađuje događaj pritiska/klika na stavku
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView label;
         public MyViewHolder(View itemView) {
@@ -58,11 +60,13 @@ public class JednostavnaListaAdapter extends RecyclerView.Adapter<JednostavnaLis
 
         @Override
         public void onClick(View v) {
+            // vrati poziciju na koju je korisnik kliknuo
             int pos = getAdapterPosition();
             notifyDataSetChanged();
 
             // Dohvat podataka iz adaptera
-            if (pos != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+            // Check if an item was deleted, but the user clicked it before the UI removed it
+            if (pos != RecyclerView.NO_POSITION) {
                 // Dohvaća se podatak iz dataseta koji se nalazi na poziciji kliknutog retka liste
                 String pok = mDataset.get(pos);
                 Toast.makeText(con, pok, Toast.LENGTH_SHORT).show();

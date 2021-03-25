@@ -15,9 +15,6 @@ import java.util.List;
 
 public class MojAdapterListaActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private MojAdapterListaAdapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
     private List<Pokemon> pokemoniObj = new ArrayList<>(25);
 
     @Override
@@ -30,9 +27,7 @@ public class MojAdapterListaActivity extends AppCompatActivity {
         napuniPolje(values);
 
         setContentView(R.layout.activity_moj_adapter_lista);
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
@@ -43,16 +38,14 @@ public class MojAdapterListaActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new MojAdapterListaAdapter(pokemoniObj, c);
-
+        MojAdapterListaAdapter mAdapter = new MojAdapterListaAdapter(pokemoniObj, c);
         recyclerView.setAdapter(mAdapter);
 
         setTitle(getTitle() + " - složena");
-
     }
 
     private void napuniPolje(List<String> punj){
